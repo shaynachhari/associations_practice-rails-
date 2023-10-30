@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_27_093856) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_27_133206) do
   create_table "abcs", force: :cascade do |t|
     t.integer "a_id"
     t.integer "b_id"
@@ -87,6 +87,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_093856) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cars", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.integer "nuser_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nuser_id"], name: "index_cars_on_nuser_id"
+  end
+
   create_table "doctors", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -147,6 +156,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_093856) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "nusers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "parts", force: :cascade do |t|
     t.string "part_number"
     t.datetime "created_at", null: false
@@ -200,6 +215,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_093856) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "profile1s", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -267,6 +289,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_093856) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user2s", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "age"
@@ -277,4 +305,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_093856) do
 
   add_foreign_key "accounts", "suppliers"
   add_foreign_key "books", "authors"
+  add_foreign_key "cars", "nusers"
 end
